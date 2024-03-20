@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact</title>
+  <style>
+    .container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+p:first-child {
+  margin-top: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+#callButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#callButton:hover {
+  background-color: #0056b3;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Contact Information</h2>
+    <p>Name: Manabjit</p>
+    <p>Phone No: 8453562184</p>
+    <p>
+      Honorable Speech:<br>
+      I am Manabjit, a student of Don Bosco School in class 10, currently 17 years old. I am passionate about web development, writing, and exploring the realms of the mind, behavior, soul, gestures, dance, and sketching. 
+    </p>
+    <button id="callButton">Call Now</button>
+  </div>
+
+ <script>
+  document.getElementById("callButton").addEventListener("click", function() {
+  var phoneNumber = "8453562184"; // Replace with your phone number
+  window.location.href = "tel:" + phoneNumber;
+});
+ </script>
+</body>
+</html>

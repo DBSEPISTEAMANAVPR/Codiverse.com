@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        
+
+        .service-info {
+            flex: 1;
+        }
+
+        .service-info h2 {
+            margin-top: 0;
+        }
+
+        .subscription-boxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .subscription-box {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .subscription-box h3 {
+            margin-top: 0;
+        }
+
+        .subscription-box button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .payment-options button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .payment-options button:hover {
+            background-color: #0056b3;
+        }
+
+        
+    </style>
+    <div class="container">
+        <div class="service-info">
+            <h2>Coding Service</h2>
+            <p>Get professional coding assistance for your projects from our experienced team.</p>
+            <p>Our services include:</p>
+            <ul>
+                <li>Web Development</li>
+                <li>Mobile App Development</li>
+                <li>Software Development</li>
+                <li>Custom Solutions</li>
+            </ul>
+        </div>
+        <div class="subscription-boxes">
+            <div class="subscription-box">
+                <h3>2 Weeks</h3>
+                <p>Price: RS 99</p>
+                <button onclick="purchase(99)">Buy</button>
+            </div>
+            <div class="subscription-box">
+                <h3>20 Days</h3>
+                <p>Price: RS 159</p>
+                <button onclick="purchase(159)">Buy</button>
+            </div>
+            <div class="subscription-box">
+                <h3>39 Days</h3>
+                <p>Price: RS 299</p>
+                <button onclick="purchase(299)">Buy</button>
+            </div>
+            <div class="subscription-box">
+                <h3>50 Days</h3>
+                <p>Price: RS 499</p>
+                <button onclick="purchase(499)">Buy</button>
+            </div>
+            <div class="subscription-box">
+                <h3>120 + 10 Days</h3>
+                <p>Price: RS 999</p>
+                <button onclick="purchase(999)">Buy</button>
+                <div id="payment-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Payment</h2>
+                        <p>Select Payment Method:</p>
+                        <div class="payment-options">
+                            <button onclick="payWithUPI()">UPI</button>
+                            <button onclick="payWithPhonePe()">PhonePe</button>
+                            <button onclick="payWithGooglePay()">Google Pay</button>
+                            <button onclick="payWithPaytm()">Paytm</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="payment-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Payment</h2>
+                    <p>Please enter your payment details:</p>
+                    <form id="payment-form">
+                        <label for="card-number">Card Number:</label>
+                        <input type="text" id="card-number" name="card-number" required>
+                        <label for="expiry">Expiry Date:</label>
+                        <input type="text" id="expiry" name="expiry" required>
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" name="cvv" required>
+                        <button type="submit">Pay</button>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                function purchase(price) {
+                    document.getElementById('payment-modal').style.display = 'block';
+                    document.getElementById('payment-form').addEventListener('submit', function (event) {
+                        event.preventDefault();
+                        alert('Payment successful! Thank you for your purchase of RS ' + price + '.');
+                        document.getElementById('payment-modal').style.display = 'none';
+                    });
+                }
+
+                document.getElementsByClassName('close')[0].onclick = function () {
+                    document.getElementById('payment-modal').style.display = 'none';
+                }
+                window.onclick = function (event) {
+                    if (event.target == document.getElementById('payment-modal')) {
+                        document.getElementById('payment-modal').style.display = 'none';
+                    }
+                }
+            </script>
+
+</body>
+
+</html>
